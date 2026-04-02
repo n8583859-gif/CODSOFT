@@ -1,18 +1,18 @@
                                     # Calculator with simple functionality
 
-
-while True:
+procced = True
+while procced:
     #quit or procced options
     print("\n===========================================================")
-    process = input("Click `enter` to porceed or `q` to quit: \n").lower()
+    procced = input("Click `enter` to porceed or `q` to quit: \n").lower()
 
     #procced or quit
-    if (process == "q"):
+    if (procced == "q"):
         print("\nThanks for aproacohng us! \n Have a good day/night...")
         print("___________________________________________________________")
-        break
+        procced = False
 
-    elif (process == ""):
+    elif (procced == ""):
         #input validation
         try:
             #user input for num1 and operator
