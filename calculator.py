@@ -2,14 +2,24 @@
 
 
 while True:
+    #Quit or procced 
+    process = input("\nClick `enter` to porceed or `q` to quit: \n").lower()
+    if (process == "q"):
+        break
+    elif (process == ""):
+        pass
+    else:
+        continue
+
+    #Error handle
     try:
-        #User input
+        #User input for numbers and operator
         num1 = float(input("Enter first number: "))
         operator = input("Choose an operator (+,-,*,/): ").strip()
 
         ##Handle wrong operator case
         if operator not in ("+", "-", "*", "/"):
-            print("Please! Choose operator form (+, -, *, /)")
+            print("\nPlease! Choose operator form (+, -, *, /)\n")
             continue
 
         ##User input
@@ -17,7 +27,7 @@ while True:
         
     #Handle error form user
     except ValueError as ve:
-        print("Please! Enter a Valid Number")
+        print("\nPlease! Enter a Valid Number\n")
 
     else:
         #Calculation if no error found
@@ -28,7 +38,7 @@ while True:
         elif (operator == "/"):
             #Handling `ZeroDivisionError`
             if (num2 == 0):
-                print("Division By Zero Is Not Allowed")
+                print("\nDivision By Zero Is Not Allowed\n")
                 continue
             else:    
                 result = num1/num2
