@@ -3,34 +3,38 @@
 
 while True:
     #Quit or procced 
-    process = input("\nClick `enter` to porceed or `q` to quit: \n").lower()
+    print("\n===========================================================")
+    process = input("Click `enter` to porceed or `q` to quit: \n").lower()
     if (process == "q"):
+
+        print("\nThanks for aproacohng us! \n Have a good day/night...")
+        print("___________________________________________________________")
         break
     elif (process == ""):
         pass
     else:
         continue
 
-    #Error handle
+    #Input validation
     try:
-        #User input for numbers and operator
+        #User input for num1 and operator
         num1 = float(input("Enter first number: "))
-        operator = input("Choose an operator (+,-,*,/): ").strip()
+        operator = input("Enter an operator (+,-,*,/): ").strip()
 
-        ##Handle wrong operator case
+        #Handle input wrong operator
         if operator not in ("+", "-", "*", "/"):
             print("\nPlease! Choose operator form (+, -, *, /)\n")
             continue
 
-        ##User input
+        #User input for num2
         num2 = float(input("Enter second number: ")) 
         
     #Handle error form user
     except ValueError as ve:
-        print("\nPlease! Enter a Valid Number\n")
+        print("\nPlease! Enter a valid number\n")
 
+    #Calculation, result
     else:
-        #Calculation if no error found
         if (operator == "+"):
                 result = num1 + num2
         elif (operator == "-"):
@@ -38,12 +42,14 @@ while True:
         elif (operator == "/"):
             #Handling `ZeroDivisionError`
             if (num2 == 0):
-                print("\nDivision By Zero Is Not Allowed\n")
+                print("\nDivision by zero is not defined\n")
                 continue
             else:    
                 result = num1/num2
         else:
             result = num1*num2
 
-        #Print calculated result
+        #Print result
+        print("\n---------------[RESULT]---------------")
         print(f"{num1} {operator} {num2} = {result}")
+        print("--------------------------------------\n")
