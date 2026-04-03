@@ -24,7 +24,7 @@ while True:
 
 
 
-#Number and operator inputs, Calcuations
+#Number and operator inputs, Calcuations, Result, Restart
 while proceed:
 
     #Validate first number input from user
@@ -90,9 +90,16 @@ while proceed:
     print("------------------------------------------------")
 
 
-
-    
-
-
-    
-
+    #Restart calculator
+    while True:
+        restart = input("Would you like to calculate again? (y/n): ").lower()
+        if (restart == 'n'):
+            print("Thanks for using the calculator. See you next time!")
+            print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+            proceed = False
+            break
+        elif (restart == 'y'):
+            proceed = True
+            break
+        else:
+            continue
