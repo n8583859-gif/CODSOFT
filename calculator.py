@@ -1,57 +1,24 @@
                                     # Calculator with simple functionality
 
-procced = True
-while procced:
-    #quit or procced options
-    print("\n===========================================================")
-    procced = input("Click `enter` to porceed or `q` to quit: \n").lower()
+#
+print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+print("                  Simple Calculator                       ")
+print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
-    #procced or quit
-    if (procced == "q"):
-        print("\nThanks for aproacohng us! \n Have a good day/night...")
-        print("___________________________________________________________")
-        procced = False
-
-    elif (procced == ""):
-        #input validation
-        try:
-            #user input for num1 and operator
-            num1 = float(input("Enter first number: "))
-            operator = input("Enter an operator (+,-,*,/): ").strip()
-
-            #handle input wrong operator
-            if operator not in ("+", "-", "*", "/"):
-                print("\n⚠️  Please! Choose operator form (+, -, *, /)\n")
-                continue
-
-            #user input for num2
-            num2 = float(input("Enter second number: ")) 
-            
-        #handle error form user
-        except ValueError as ve:
-            print("\n⚠️  Please! Enter a valid number\n")
-
-        #calculation, result
-        else:
-            if (operator == "+"):
-                    result = num1 + num2
-            elif (operator == "-"):
-                result = num1 - num2
-            elif (operator == "/"):
-                #Handling `ZeroDivisionError`
-                if (num2 == 0):
-                    print("\n⚠️  Division by zero is not defined\n")
-                    continue
-                else:    
-                    result = num1/num2
-            else:
-                result = num1*num2
-
-            #Print result
-            print("\n---------------[RESULT]---------------")
-            print(f"{num1} {operator} {num2} = {result}")
-            print("--------------------------------------\n")
-    
-    #revisit `procced or quit options`
+while True:
+    #Validate Proceed or quit choice
+    choice = input("Press `ENTER` to start a calculation\nType 'q' to quit\nYour choice: ").lower()
+    if (choice == 'q'):
+        print("Thanks for using the calculator. See you next time!")
+        print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+        proceed = False
+        break
+    elif (choice == ""):
+        proceed = True
+        break
     else:
         continue
+
+
+while proceed:
+    """Calculation part"""
