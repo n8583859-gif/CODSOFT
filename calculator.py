@@ -52,13 +52,23 @@ while proceed:
     while True:
         try:
             num2 = float(input("Enter the second number: "))
-        except ValueError as ve:
+            if (num2 == 0):
+                raise ZeroDivisionError
+
+        #ValueError handaling
+        except ValueError:
             print("⚠️  Please! try again with a valid number.")
+            continue
+
+        #ZeroDivisionError handaling
+        except ZeroDivisionError:
+            print("⚠️  Division by zero is not defined.")
             continue
         else:
             break
-    
 
+
+    #(Calculations)
     #Addition
     if (operator == '+'):
         result = num1 + num2
@@ -76,13 +86,9 @@ while proceed:
 
     #Division
     if (operator == '/'):
-        #ZeroDivisionError
-        if (num2 == 0):
-            print("⚠️  Division by zero is not defined.")
-            continue
-        else:
-            result = num1 / num2
-    
+        result = num1 / num2
+
+
 
     #Result printing
     print("--------------------[RESULT]--------------------")
