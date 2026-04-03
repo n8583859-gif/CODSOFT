@@ -10,8 +10,9 @@ print("━━━━━━━━━━━━━━━━━━━━━━━━�
 
 #Validate proceed or quit choice
 while True:
-    choice = input("Press `ENTER` to start a calculation\nType 'q' to quit\nYour choice: ").lower()
+    choice = input("Press `ENTER` to start a calculation or Type 'q' to quite: ").lower()
     if (choice == 'q'):
+        print("\n----------------------------------------------------------")
         print("Thanks for using the calculator. See you next time!")
         print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
         proceed = False
@@ -30,9 +31,9 @@ while proceed:
     #Validate first number input from user
     while True:
         try:
-            num1 = float(input("Enter the first number: "))
+            num1 = float(input("\nEnter the first number: "))
         except ValueError as ve:
-            print("⚠️  Please! try again with a valid number.")
+            print("⚠️  Please! try again with a valid number.\n")
             continue
         else:
             break
@@ -40,9 +41,9 @@ while proceed:
 
     #Validate operator input from user
     while True:
-        operator = input("Choose an operation (+, -, *, /):").strip()
+        operator = input("\nChoose an operation (+, -, *, /):").strip()
         if operator not in ('+', '-', '*', '/'):
-            print("⚠️  Invalid operation. Please choose from +, -, *, /")
+            print("⚠️  Invalid operation. Please choose from +, -, *,/ \n")
             continue
         else:
             break
@@ -51,18 +52,18 @@ while proceed:
     #Validate second number input from user
     while True:
         try:
-            num2 = float(input("Enter the second number: "))
+            num2 = float(input("\nEnter the second number: "))
             if (num2 == 0):
                 raise ZeroDivisionError
 
         #ValueError handaling
         except ValueError:
-            print("⚠️  Please! try again with a valid number.")
+            print("⚠️  Please! try again with a valid number.\n")
             continue
 
         #ZeroDivisionError handaling
         except ZeroDivisionError:
-            print("⚠️  Division by zero is not defined.")
+            print("⚠️  Division by zero is not defined.\n")
             continue
         else:
             break
@@ -91,20 +92,22 @@ while proceed:
 
 
     #Result printing
-    print("--------------------[RESULT]--------------------")
+    print("\n--------------------[RESULT]--------------------")
     print(f"|  {num1} {operator} {num2} = {result:.2f}")
-    print("------------------------------------------------")
+    print("------------------------------------------------\n")
 
 
     #Restart calculator
     while True:
         restart = input("Would you like to calculate again? (y/n): ").lower()
         if (restart == 'n'):
+            print("------------------------------------------------")
             print("Thanks for using the calculator. See you next time!")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             proceed = False
             break
         elif (restart == 'y'):
+            print("\n================================================")
             proceed = True
             break
         else:
