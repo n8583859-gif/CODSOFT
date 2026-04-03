@@ -1,12 +1,15 @@
-                                    # Calculator with simple functionality
+                                    ###..Simple Calculator..###
 
-#
+
+#Start calculator interface
 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 print("                  Simple Calculator                       ")
 print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
 
+
+
+#Validate proceed or quit choice
 while True:
-    #Validate proceed or quit choice
     choice = input("Press `ENTER` to start a calculation\nType 'q' to quit\nYour choice: ").lower()
     if (choice == 'q'):
         print("Thanks for using the calculator. See you next time!")
@@ -21,7 +24,7 @@ while True:
 
 
 
-#Number and operator inputs
+#Number and operator inputs, Calcuations
 while proceed:
 
     #Validate first number input from user
@@ -33,6 +36,7 @@ while proceed:
             continue
         else:
             break
+
 
     #Validate operator input from user
     while True:
@@ -53,5 +57,37 @@ while proceed:
             continue
         else:
             break
+    
+
+    #Addition
+    if (operator == '+'):
+        result = num1 + num2
+
+
+    #Diffrence
+    if (operator == '-'):
+        result = num1 - num2
+
+
+    #Multiplication
+    if (operator == '*'):
+        result = num1 * num2
+
+
+    #Division
+    if (operator == '/'):
+        #ZeroDivisionError
+        if (num2 == 0):
+            print("⚠️  Division by zero is not defined.")
+        else:
+            result = num1 / num2
+    
+
+
+    
+
+    
+
+
     
 
