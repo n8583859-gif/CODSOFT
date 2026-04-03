@@ -83,8 +83,12 @@ while proceed:
             result = num1 / num2
     
 
+    #Result printing
+    print("--------------------[RESULT]--------------------")
+    print(f"|  {num1} {operator} {num2} = {result:.2f}")
+    print("------------------------------------------------")
 
-    
+
 
     
 
