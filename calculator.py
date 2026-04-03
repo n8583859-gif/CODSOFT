@@ -79,6 +79,7 @@ while proceed:
         #ZeroDivisionError
         if (num2 == 0):
             print("⚠️  Division by zero is not defined.")
+            break
         else:
             result = num1 / num2
     
