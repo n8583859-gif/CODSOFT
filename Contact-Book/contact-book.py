@@ -35,7 +35,6 @@ def get_name():
         return name
         break
 
-
 #Validate Phone number
 def get_phone_number():
     while True:
@@ -45,7 +44,6 @@ def get_phone_number():
             break
         print("⚠️  Invalid phone number. Please enter 10 digits only.\n")
         continue
-
 
 #Validate email
 def get_email():
@@ -58,7 +56,6 @@ def get_email():
             break
         print("⚠️  Invalid email format. Please try again.\n")
         continue
-
 
 #Validate address
 def get_address():
@@ -82,7 +79,11 @@ def add_contact(name, phone_number, email, address):
 def show_contact_list(contacts):
     if len(contacts) > 0:
         for i in range(1, len(contacts)+1):
-            print(f"{i}. {contacts[i]['name']}  |  {contacts[i]['phone_number']}")
+            contact_name = contacts[i]['name']
+            contact_phone_number = contacts[i]['phone_number']
+            contact_email = contacts[i]['email']
+            contact_address = contacts[i]['address']
+            print(f"{i}. {contact_name} | {contact_phone_number} | {contact_email} | {contact_address}")
     else:
         print("No contacts found.")
 
@@ -96,14 +97,37 @@ def search_contact(contacts):
             search == contacts[i]['phone_number']:
             print(f"name         :  {contacts[i]['name']}")
             print(f"phone number :  {contacts[i]['phone_number']}")
-            print(f"emil         :  {contacts[i]['email']}")
+            print(f"email        :  {contacts[i]['email']}")
+            print(f"address      :  {contacts[i]['address']}")
     else:
         print("No matching contacts found.")
 
 
+
 #Update Contact
-def update_contact():
-    pass
+def update_contact(contacts):
+    update_details = input("Enter name or phone number to update: ").lower().strip()
+    for i in range(1, len(contacts)+1):
+        if update_details == contacts[i]['name'] or \
+            update_details == contacts[i]['phone_number']:
+            print("\nLeave field empty to keep current value.")
+            update_name = input("Enter new name: ").lower().strip()
+            update_phone_number = input("Enter new phone number: ").lower().strip()
+            update_email = input("Enter new email: ").lower().strip()
+            update_address = input("Enter new address: ").lower().strip()
+            if update_name:
+                contacts[i]['name'] = update_name
+            if update_phone_number:
+                contacts[i]['phone_number'] = update_phone_number
+            if update_email:
+                contacts[i]['email'] = update_email
+            if update_address:
+                contacts[i]['address'] = update_address
+            print("Contact updated successfully.")
+        break
+    else:
+        print("No matching contacts found.")
+
 
 
 
@@ -132,6 +156,7 @@ def delete_contact(contacts):
 
 
 
+#User interface
 def main():
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("           Contact Book")
