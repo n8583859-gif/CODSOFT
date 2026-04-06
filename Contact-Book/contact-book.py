@@ -5,14 +5,14 @@ contacts = {}
 
 #Options, get user choice
 def get_user_choice():
-    print("\n|--------[MENU]-------|")
+    print("\n┌━━━━━━━[MENU]━━━━━━━━┐")
     print("|  1. Add Contact     |")
     print("|  2. View Contacts   |")
     print("|  3. Search Contact  |")
     print("|  4. Update Contact  |")
     print("|  5. Delete Contact  |")
     print("|  6. Exit            |")
-    print("-----------------------")
+    print("└━━━━━━━━━━━━━━━━━━━━━┘")
 
     while True:
         choice = input("Enter your choice (1-6):").strip()
@@ -87,25 +87,48 @@ def show_contact_list(contacts):
         print("No contacts found.")
 
 
+
 #Search contact via name/phone number
 def search_contact(contacts):
-    if len(contacts) > 0:
-        search = input("Enter name or phone number: ").strip().lower()
-        for i in range(1, len(contacts)+1):
-            if search == contacts[i]['name'] or \
-                search == contacts[i]['phone_number']:
-                print(f"name         :  {contacts[i]['name']}")
-                print(f"phone number :  {contacts[i]['phone_number']}")
-                print(f"emil         :  {contacts[i]['email']}")
-                print(f"address      :  {contacts[i]['address']}")
-        else:
-            print("No matching contacts found.")
+    search = input("Enter name or phone number: ").strip().lower()
+    for i in range(1, len(contacts)+1):
+        if search == contacts[i]['name'] or \
+            search == contacts[i]['phone_number']:
+            print(f"name         :  {contacts[i]['name']}")
+            print(f"phone number :  {contacts[i]['phone_number']}")
+            print(f"emil         :  {contacts[i]['email']}")
     else:
-        print("No contacts found. Please! Add contacts first.")
+        print("No matching contacts found.")
+
+
+#Update Contact
+def update_contact():
+    pass
 
 
 
-# def update_contact():
+#Delete contact
+def delete_contact(contacts):
+    delete_number = input("Enter name or phone number to delete: ").strip().lower()
+    for i in range(1, len(contacts)+1):
+        if delete_number == contacts[i]['name'] or \
+            delete_number == contacts[i]['phone_number']:
+            while True:
+                think_again = input("⚠️⚠️  Are you sure you want to delete this contact? (y/n): ").lower().strip()
+                if think_again == 'y':
+                    contacts.pop(i)
+                    print("Contact deleted successfully.")
+                    break
+                elif think_again == 'n':
+                    break
+                else:
+                    continue
+            break
+    else:
+        print("No matching contacts found.")
+
+
+
 
 
 
@@ -118,6 +141,7 @@ def main():
 
         choice = get_user_choice()
 
+        #Add new contact
         if choice == '1':
             print("\n_______________[Add New Contact]_______________")
             name = get_name()
@@ -127,20 +151,34 @@ def main():
             add_contact(name, phone_number, email, address)
             print("_____________________________________________\n")
             continue
+
+        #View all contacts
         elif choice == '2':
             print("\n__________________[Contacts]___________________")
             show_contact_list(contacts)
             print("_____________________________________________\n")
             continue
+
+        #Search contact
         elif choice == '3':
             print("\n________________[Search Contact]_______________")
             search_contact(contacts)
             print("_______________________________________________\n")
             continue
+
+        #Update contct
         elif choice == '4':
-            pass
+            print("\n________________[Update Contact]_______________")
+            update_contact(contacts)
+            print("_______________________________________________\n")
+
+        #Delete contact
         elif choice == '5':
-            pass
+            print("\n________________[Delete Contact]_______________")
+            delete_contact(contacts)
+            print("_______________________________________________\n")
+
+        #Exit
         elif choice == '6':
             print("\n~ See you again!")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
