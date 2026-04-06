@@ -59,10 +59,13 @@ def get_email():
 
 #Validate address
 def get_address():
-    address = input("Enter address: ").strip()
-    if address == '':
-        print("⚠️  Adderess cannot be empty.\n")
-    return address
+    while True:
+        address = input("Enter address: ").strip()
+        if address == '':
+            print("⚠️  Adderess cannot be empty.\n")
+            continue
+        return address
+
    
 
 
@@ -71,7 +74,7 @@ def get_address():
 def add_contact(name, phone_number, email, address):
     i = len(contacts)+1
     contacts[i] = {'name':name, 'phone_number': phone_number, 'email':email, 'address':address}
-    print("Contact added successfully.")
+    print("☑️  Contact added successfully.")
 
 
 
@@ -85,7 +88,7 @@ def show_contact_list(contacts):
             contact_address = contacts[i]['address']
             print(f"{i}. {contact_name} | {contact_phone_number} | {contact_email} | {contact_address}")
     else:
-        print("No contacts found.")
+        print("❎  No contacts found.")
 
 
 
@@ -99,8 +102,9 @@ def search_contact(contacts):
             print(f"phone number :  {contacts[i]['phone_number']}")
             print(f"email        :  {contacts[i]['email']}")
             print(f"address      :  {contacts[i]['address']}")
+        break
     else:
-        print("No matching contacts found.")
+        print("❎  No matching contacts found.")
 
 
 
@@ -123,10 +127,10 @@ def update_contact(contacts):
                 contacts[i]['email'] = update_email
             if update_address:
                 contacts[i]['address'] = update_address
-            print("Contact updated successfully.")
-        break
+            print("☑️  Contact updated successfully.")
+            break
     else:
-        print("No matching contacts found.")
+        print("❎  No matching contacts found.")
 
 
 
@@ -138,10 +142,10 @@ def delete_contact(contacts):
         if delete_number == contacts[i]['name'] or \
             delete_number == contacts[i]['phone_number']:
             while True:
-                think_again = input("⚠️⚠️  Are you sure you want to delete this contact? (y/n): ").lower().strip()
+                think_again = input("⚠️⚠️  Are you sure you want to permanently delete this contact? (y/n): ").lower().strip()
                 if think_again == 'y':
                     contacts.pop(i)
-                    print("Contact deleted successfully.")
+                    print("☑️  Contact deleted successfully.")
                     break
                 elif think_again == 'n':
                     break
@@ -149,7 +153,7 @@ def delete_contact(contacts):
                     continue
             break
     else:
-        print("No matching contacts found.")
+        print("❎  No matching contacts found.")
 
 
 
@@ -205,7 +209,8 @@ def main():
 
         #Exit
         elif choice == '6':
-            print("\n~ See you again!")
+            print("\n_______________________________________________")
+            print("🤗  See you again!")
             print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
             break
 
