@@ -75,7 +75,7 @@ def get_address():
 
 def add_contact(name, phone_number, email, address):
     i = len(contact)+1
-    contact.update({i : {'name':name, 'phone_number': phone_number, 'email':email, 'address':address}})
+    contact[i] = {'name':name, 'phone_number': phone_number, 'email':email, 'address':address}
     print("Contact added successfully.")
 
 
@@ -86,7 +86,6 @@ def show_contact_list(contact):
             print(f"{i}. {contact[i]['name']}  |   {contact[i]['phone_number']}")
     else:
         print("No contacts found.")
-
 
 
 
