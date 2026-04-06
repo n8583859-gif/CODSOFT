@@ -87,3 +87,41 @@ def show_contact_list(contact):
     else:
         print("No contacts found.")
 
+
+
+
+def search_contact(contact):
+    print("--- Search Contact ---")
+
+    search = input("Enter name or phone number:").strip().lower()
+
+    for i in range(1, len(contact)+1):
+        if search == contact[i]['name'] or \
+           search == contact[i]['phone_number']:
+            print(f"name    :  {contact[i]['name']}")
+            print(f"email   :  {contact[i]['phone_number']}")
+            print(f"email   :  {contact[i]['email']}")
+            print(f"address :  {contact[i]['address']}")
+        else:
+            print("No matching contact found.\n")
+
+
+
+
+def main():
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+    print("           Contact Book")
+    print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
+
+    while True:
+        name = get_name()
+        phone_number = get_phone_number()
+        email = get_email()
+        address = get_address()
+        add_contact(name, phone_number, email, address)
+
+
+
+
+if __name__ == '__main__':
+    main()
