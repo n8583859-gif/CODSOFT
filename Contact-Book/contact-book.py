@@ -1,8 +1,6 @@
                                  ###...Phone-Book...###
 import re
 
-contacts = {}
-
 #Options, get user choice
 def get_user_choice():
     print("\n┌━━━━━━━[MENU]━━━━━━━━┐")
@@ -68,22 +66,24 @@ def get_address():
 
 
 #Add contacts into
-def add_contact(name, phone_number, email, address):
-    i = len(contacts)+1
-    contacts[i] = {'name':name, 'phone_number': phone_number, 'email':email, 'address':address}
+def add_contact(contacts, name, phone_number, email, address):
+    contacts[phone_number] = {'name':name, 'email':email, 'address':address}
     print("☑️  Contact added successfully.")
+
 
 
 
 #Show contact list
 def show_contact_list(contacts):
     if len(contacts) > 0:
-        for i in range(1, len(contacts)+1):
-            contact_name = contacts[i]['name']
-            contact_phone_number = contacts[i]['phone_number']
-            contact_email = contacts[i]['email']
-            contact_address = contacts[i]['address']
+        i = 1
+        for phone, other_details in contacts.items():
+            contact_name = other_details['name']
+            contact_phone_number = phone
+            contact_email = other_details['email']
+            contact_address = other_details['address']
             print(f"{i}. {contact_name} | {contact_phone_number} | {contact_email} | {contact_address}")
+            i += 1
     else:
         print("❎  No contacts found.")
 
@@ -92,13 +92,13 @@ def show_contact_list(contacts):
 #Search contact via name/phone number
 def search_contact(contacts):
     search = input("Enter name or phone number: ").strip().lower()
-    for i in range(1, len(contacts)+1):
-        if search == contacts[i]['name'] or \
-            search == contacts[i]['phone_number']:
-            print(f"name         :  {contacts[i]['name']}")
-            print(f"phone number :  {contacts[i]['phone_number']}")
-            print(f"email        :  {contacts[i]['email']}")
-            print(f"address      :  {contacts[i]['address']}")
+    for phone, other_details in contacts.items():
+        if search == other_details['name'] or \
+            search == phone:
+            print(f"name         :  {other_details['name']}")
+            print(f"phone number :  {phone}")
+            print(f"email        :  {other_details['email']}")
+            print(f"address      :  {other_details['address']}")
             break
     else:
         print("❎  No matching contacts found.")
@@ -108,22 +108,24 @@ def search_contact(contacts):
 #Update Contact
 def update_contact(contacts):
     update_details = input("Enter name or phone number to update: ").lower().strip()
-    for i in range(1, len(contacts)+1):
-        if update_details == contacts[i]['name'] or \
-            update_details == contacts[i]['phone_number']:
+    for phone, other_details in contacts.items():
+        if update_details == other_details['name'] or \
+            update_details == phone:
+
             print("\nLeave field empty to keep current value.")
             update_name = input("Enter new name: ").lower().strip()
             update_phone_number = input("Enter new phone number: ").lower().strip()
             update_email = input("Enter new email: ").lower().strip()
             update_address = input("Enter new address: ").lower().strip()
+
             if update_name:
-                contacts[i]['name'] = update_name
+                other_details['name'] = update_name
             if update_phone_number:
-                contacts[i]['phone_number'] = update_phone_number
+                phone = update_phone_number
             if update_email:
-                contacts[i]['email'] = update_email
+                other_details['email'] = update_email
             if update_address:
-                contacts[i]['address'] = update_address
+                other_details['address'] = update_address
             print("☑️  Contact updated successfully.")
             break
     else:
@@ -135,13 +137,13 @@ def update_contact(contacts):
 #Delete contact
 def delete_contact(contacts):
     delete_number = input("Enter name or phone number to delete: ").strip().lower()
-    for i in range(1, len(contacts)+1):
-        if delete_number == contacts[i]['name'] or \
-            delete_number == contacts[i]['phone_number']:
+    for phone, other_details in contacts.items():
+        if delete_number == other_details['name'] or \
+            delete_number == phone:
             while True:
                 think_again = input("⚠️⚠️  Are you sure you want to permanently delete this contact? (y/n): ").lower().strip()
                 if think_again == 'y':
-                    contacts.pop(i)
+                    contacts.pop(phone)
                     print("☑️  Contact deleted successfully.")
                     break
                 elif think_again == 'n':
@@ -159,6 +161,9 @@ def delete_contact(contacts):
 
 #User interface
 def main():
+
+    contacts = {}
+
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
     print("           Contact Book")
     print("━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━")
@@ -174,7 +179,7 @@ def main():
             phone_number = get_phone_number()
             email = get_email()
             address = get_address()
-            add_contact(name, phone_number, email, address)
+            add_contact(contacts, name, phone_number, email, address)
             print("_____________________________________________\n")
             continue
 
