@@ -18,7 +18,6 @@ def get_user_choice():
         choice = input("Enter your choice (1-6):").strip()
         if choice in ('1', '2', '3', '4', '5', '6'):
             return choice
-            break
         else:
             print("⚠️  Invalid choice. Please enter a number between 1 and 6.\n")
             continue
@@ -33,7 +32,7 @@ def get_name():
             print("⚠️  Name cannot be empty.\n")
             continue
         return name
-        break
+
 
 #Validate Phone number
 def get_phone_number():
@@ -41,7 +40,6 @@ def get_phone_number():
         phone_number = input("Enter phone number: ")
         if phone_number.isdigit() and len(phone_number) == 10:
             return phone_number
-            break
         print("⚠️  Invalid phone number. Please enter 10 digits only.\n")
         continue
 
@@ -53,7 +51,6 @@ def get_email():
         match = re.match(pattern, email)
         if match:
             return email
-            break
         print("⚠️  Invalid email format. Please try again.\n")
         continue
 
