@@ -99,7 +99,7 @@ def search_contact(contacts):
             print(f"phone number :  {contacts[i]['phone_number']}")
             print(f"email        :  {contacts[i]['email']}")
             print(f"address      :  {contacts[i]['address']}")
-        break
+            break
     else:
         print("❎  No matching contacts found.")
 
